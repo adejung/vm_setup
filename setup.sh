@@ -41,6 +41,7 @@ then
 else
 	git clone https://source.ctp-consulting.com/java/vm_setup_scripts.git
 fi
+git checkout redhat_version
 
 if [ $? -ne 0 ]
 then
