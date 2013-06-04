@@ -22,30 +22,31 @@ fi
 
 echo
 echo "First we need to install Git. We'll need your admin password for that..."
-switch ($OS)
-case "RED_HAT"
+case $OS in
+"RED_HAT")
+    echo "RED_HAT git install"
     sudo yum -yq install git-core
-breaksw
-#case "NOT_RED_HAT
-default
+    ;;
+"NOT_RED_HAT")
+    echo "NOT_RED_HAT git install"
     sudo apt-get -yq install git-core
-endsw
+    ;;
+esac
 
-echo
 echo "Cloning the repository."
 echo -e "\e[31mNote that your username and password are the ones from GitLab!\e[0m"
 echo "Login to GitLab, check your profile and set a password if you have not already done so.\n"
-switch ($OS)
-case "RED_HAT"
+case $OS in
+"RED_HAT")
     echo -n "Enter your username:"
     read git_username
     echo git clone https://$git_username@source.ctp-consulting.com/java/vm_setup_scripts.git
     git clone https://$git_username@source.ctp-consulting.com/java/vm_setup_scripts.git
-breaksw
-#case "NOT_RED_HAT
-default
+    ;;
+"NOT_RED_HAT")
     git clone https://source.ctp-consulting.com/java/vm_setup_scripts.git
-endsw
+    ;;
+esac
 
 if [ $? -ne 0 ]
 then
